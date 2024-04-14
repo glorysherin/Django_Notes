@@ -16,13 +16,26 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from members import views
+from django.conf import settings
+from django.conf.urls.static import static
 
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('index/', views.index, name='index'),
     path('members/', views.member, name='member'),
+    path('calendar/', views.calendar, name='calendar'),
+    path('icons/', views.icons, name='icons'),
+    path('forms/', views.forms, name='forms'),
+    path('profile/', views.profile, name='profile'),
+    path('tables/', views.tables, name='tables'),
     # the name attribute is only for our reference
     # path('member1/', views.member1, name='member'),
     path('',views.home),
+    path('wish/',views.wish),
+    path('meeting/',views.meeting),
 ]
+
+urlpatterns += static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
+urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
