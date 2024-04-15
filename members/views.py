@@ -19,8 +19,12 @@ def icons(request):
     return render(request,'icons.html')
 def calendar(request):
     return render(request,'calendar.html')
-def icons(request):
-    return render(request,'icons.html')
+def prescription(request):
+    return render(request,'prescription.html')
+def viewprescription(request):
+    return render(request,'viewprescription.html')
+def report(request):
+    return render(request,'report.html')
 def profile(request):
     return render(request,'profile.html')
 def tables(request):

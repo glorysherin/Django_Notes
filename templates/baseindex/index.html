@@ -1,5 +1,7 @@
 {% load static %}
+
 <!DOCTYPE html>
+
 <html lang="en">
   <head>
     <meta charset="utf-8" />
@@ -13,6 +15,8 @@
     <script src="{% static 'assets/js/pace.min.js' %}"></script>
     <!-- favicon -->
     <link rel="icon" href="assets/images/favicon.ico" type="image/x-icon" />
+    <!-- Vector CSS -->
+    <link href="{% static 'assets/plugins/vectormap/jquery-jvectormap-2.0.2.css' %}" rel="stylesheet" />
     <!-- simplebar CSS -->
     <link href="{% static 'assets/plugins/simplebar/css/simplebar.css' %}" rel="stylesheet" />
     <!-- Bootstrap core CSS -->
@@ -28,16 +32,6 @@
   </head>
 
   <body class="bg-theme bg-theme1">
-    <!-- start loader -->
-    <div id="pageloader-overlay" class="visible incoming">
-      <div class="loader-wrapper-outer">
-        <div class="loader-wrapper-inner">
-          <div class="loader"></div>
-        </div>
-      </div>
-    </div>
-    <!-- end loader -->
-
     <!-- Start wrapper -->
     <div id="wrapper">
       <!-- Start sidebar-wrapper -->
@@ -51,39 +45,42 @@
         <ul class="sidebar-menu do-nicescrol">
           <li class="sidebar-header">MAIN NAVIGATION</li>
           <li>
-            <a href="index.html"><i class="zmdi zmdi-view-dashboard"></i> <span>Dashboard</span></a>
+            <a href="{% url 'index' %}"><i class="zmdi zmdi-view-dashboard"></i> <span>Dashboard</span></a>
           </li>
 
           <li>
-            <a href="icons.html"><i class="zmdi zmdi-invert-colors"></i> <span>UI Icons</span></a>
+            <a href="{% url 'prescription' %}"><i class="zmdi zmdi-invert-colors"></i> <span>UI Icons</span></a>
+          </li>
+          <li>
+            <a href="{% url 'Report' %}"><i class="zmdi zmdi-invert-colors"></i> <span>Report</span></a>
           </li>
 
           <li>
-            <a href="forms.html"><i class="zmdi zmdi-format-list-bulleted"></i> <span>Forms</span></a>
+            <a href="{% url 'forms' %}"><i class="zmdi zmdi-format-list-bulleted"></i> <span>Forms</span></a>
           </li>
 
           <li>
-            <a href="tables.html"><i class="zmdi zmdi-grid"></i> <span>Tables</span></a>
+            <a href="{% url 'tables' %}"><i class="zmdi zmdi-grid"></i> <span>Tables</span></a>
           </li>
 
           <li>
-            <a href="calendar.html">
+            <a href="{% url 'calendar' %}">
               <i class="zmdi zmdi-calendar-check"></i> <span>Calendar</span>
               <small class="badge float-right badge-light">New</small>
             </a>
           </li>
 
           <li>
-            <a href="profile.html"><i class="zmdi zmdi-face"></i> <span>Profile</span></a>
+            <a href="{% url 'profile' %}"><i class="zmdi zmdi-face"></i> <span>Profile</span></a>
+          </li>
+
+          {% comment %} <li>
+            <a href="{% url 'login' %}" target="_blank"><i class="zmdi zmdi-lock"></i> <span>Login</span></a>
           </li>
 
           <li>
-            <a href="login.html" target="_blank"><i class="zmdi zmdi-lock"></i> <span>Login</span></a>
-          </li>
-
-          <li>
-            <a href="register.html" target="_blank"><i class="zmdi zmdi-account-circle"></i> <span>Registration</span></a>
-          </li>
+            <a href="{% url 'register' %}" target="_blank"><i class="zmdi zmdi-account-circle"></i> <span>Registration</span></a>
+          </li> {% endcomment %}
 
           <li class="sidebar-header">LABELS</li>
           <li>
@@ -176,85 +173,29 @@
         </nav>
       </header>
       <!-- End topbar header -->
+      <div>
+        {% block content %}
 
-      <div class="clearfix"></div>
-
-      <div class="content-wrapper">
-        <div class="container-fluid">
-          <div class="row mt-3">
-            <div class="col-lg-12">
-              <div class="card">
-                <div class="card-body">
-                  <h4>Date & Time</h4>
-                  <hr />
-
-                  <!-- End Row -->
-
-                  <h4>Web Application</h4>
-                  <hr />
-                 
-                  <div class="col-lg-6 m-auto h-auto">
-                  <div class="card">
-                    <div class="card-body">
-
-                    </div>
-                    <div class="form-group">
-                      <button type="submit" class="btn btn-light px-auto float-right mr-2"><i class="icon-share"></i> Share</button>
-                    </div>
-
-                   
-                  </div>
-                  <div class="row">
-                    <div class="col-12 col-lg-12">
-
-                    
-                      <div class="card">
-                    
-                        <div class="card-header">My Documents
-
-                          <div class="container p-3 bg-light">
-                        
-                            <div class="row">
-                            
-                              <div class="col-md ">
-                                <h5 class="">
-                                   filename
-                                </h5>
-                            </div>
-                              <div class="col-md relative">
-                                <a href="#"
-                                    class="btn btn-info form-control px-auto">View Document</a>
-                            </div> 
-
-                            <div class="col-md">
-                                <a href="#" class="btn btn-danger form-control">Delete 
-                                    Document</a>
-                            </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                   
-               
+        {% endblock %}
+      </div>
+      
           <!-- End Row -->
+
+          <!-- End Dashboard Content -->
 
           <!-- start overlay -->
           <div class="overlay toggle-menu"></div>
           <!-- end overlay -->
         </div>
         <!-- End container-fluid -->
-      </div>
+  
       <!-- End content-wrapper -->
       <!-- Start Back To Top Button -->
       <a href="javaScript:void();" class="back-to-top"><i class="fa fa-angle-double-up"></i></a>
       <!-- End Back To Top Button -->
 
       <!-- Start footer -->
-      {% comment %} <footer class="footer">
-        <div class="container">
-          <div class="text-center">Copyright © 2018 Dashtreme Admin</div>
-        </div>
-      </footer> {% endcomment %}
+      
       <!-- End footer -->
 
       <!-- start color switcher -->
@@ -304,8 +245,15 @@
     <script src="{% static 'assets/plugins/simplebar/js/simplebar.js' %}"></script>
     <!-- sidebar-menu js -->
     <script src="{% static 'assets/js/sidebar-menu.js' %}"></script>
-
+    <!-- loader scripts -->
+    <script src="{% static 'assets/js/jquery.loading-indicator.js' %}"></script>
     <!-- Custom scripts -->
     <script src="{% static 'assets/js/app-script.js' %}"></script>
+    <!-- Chart js -->
+
+    <script src="{% static 'assets/plugins/Chart.js/Chart.min.js' %}"></script>
+
+    <!-- Index js -->
+    <script src="{% static 'assets/js/index.js' %}"></script>
   </body>
 </html>
